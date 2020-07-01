@@ -18,7 +18,7 @@
       // "@services/*": ["src/services/*"],
       // "@middleware/*": ["src/middleware/*"],
       // "@helpers/*": ["src/helpers/*"],
-      // "@models/*": ["src/models/*"],
+      "@models/*": ["src/models/*"],
       // "@emails/*": ["src/emails/*"],
       // "@db/*": ["src/db/*"],
       // "@entity/*": ["src/db/entity/*"],

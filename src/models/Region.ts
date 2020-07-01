@@ -1,13 +1,19 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne } from "typeorm"
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 
-// import Team from '@models/team/model'
+import Viewport from '@models/Viewport'
 // import User from '@models/user/model'
 // import Role from '@models/role/model'
 
 @Entity()
-export class Continent {
+export class Region {
   @PrimaryGeneratedColumn()
   id!: number
+
+  @Column({
+    type: 'varchar',
+    length: 230,
+  })
+  title!: string
 
   @Column({
     type: 'varchar',
@@ -20,8 +26,10 @@ export class Continent {
     type: 'varchar',
     length: 230
   })
-  name!: string
+  url!: string
 
+  @OneToMany(type => Viewport, viewport => viewport.platform)
+  viewport!: Viewport
 
 
   // @ManyToOne(type => User, user => user.members)
@@ -34,4 +42,4 @@ export class Continent {
   // role!: Role
 }
 
-export default Continent
+export default Region
