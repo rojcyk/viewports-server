@@ -13,7 +13,8 @@
     "baseUrl": ".",
     "paths": {
       // "@constants/*": ["src/constants/*"],
-      // "@routes/*": ["src/routes/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@routes/*": ["src/routes/*"],
       // "@services/*": ["src/services/*"],
       // "@middleware/*": ["src/middleware/*"],
       // "@helpers/*": ["src/helpers/*"],

@@ -13,7 +13,11 @@
     "start": "node ./lib/worker-server.js",
     "build": "tsc && babel src --out-dir dist --extensions '.ts'",
     "dev": "nodemon",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "typeorm": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "db:migrate": "yarn run typeorm migration:run",
+    "db:generate": "yarn run typeorm migration:generate -n",
+    "db:drop": "yarn run typeorm schema:drop"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -23,11 +27,25 @@
     "@babel/plugin-proposal-decorators": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/helmet": "^0.0.47",
+    "@types/node": "^14.0.14",
     "babel-node": "^0.0.1-security",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-transform-typescript-metadata": "^0.3.0",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.4",
-    "tsconfig-paths": "^3.9.0"
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "pg": "^8.2.1",
+    "typeorm": "^0.2.25"
   }
 }
