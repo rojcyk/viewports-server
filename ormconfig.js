@@ -1,5 +1,4 @@
 const path = require('path')
-
 const entities = path.join(__dirname, 'src/models', `*.{ts,js}`)
 const migrations = path.join(__dirname, 'src/migrations', `*.{ts,js}`)
 
@@ -12,6 +11,9 @@ module.exports = {
   database: process.env.DB_NAME,
   entities: [entities],
   migrations: [migrations],
+  seeds: ['src/seeds/**/*{.ts,.js}'],
+  factories: ['src/factories/**/*{.ts,.js}'],
+  synchronize: false,
   // subscribers: ["src/db/subscriber/**/*.ts"],
   cli: {
      entitiesDir: 'src/models',

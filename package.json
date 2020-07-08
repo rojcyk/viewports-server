@@ -15,8 +15,10 @@
     "dev": "nodemon",
     "tsc": "tsc",
     "typeorm": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "db:migrate": "yarn run typeorm migration:run",
-    "db:generate": "yarn run typeorm migration:generate -n",
+    "typeorm-seeding": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js",
+    "migration:run": "yarn run typeorm migration:run",
+    "migration:generate": "yarn run typeorm migration:generate -n",
+    "seed:run": "yarn run typeorm-seeding seed",
     "db:drop": "yarn run typeorm schema:drop"
   },
   "devDependencies": {
@@ -46,6 +48,7 @@
     "express": "^4.17.1",
     "helmet": "^3.23.3",
     "pg": "^8.2.1",
-    "typeorm": "^0.2.25"
+    "typeorm": "^0.2.25",
+    "typeorm-seeding": "^1.6.1"
   }
 }
