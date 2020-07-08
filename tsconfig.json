@@ -12,17 +12,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // "@constants/*": ["src/constants/*"],
       "@helpers/*": ["src/helpers/*"],
       "@routes/*": ["src/routes/*"],
-      // "@services/*": ["src/services/*"],
-      // "@middleware/*": ["src/middleware/*"],
-      // "@helpers/*": ["src/helpers/*"],
       "@models/*": ["src/models/*"],
-      // "@emails/*": ["src/emails/*"],
-      // "@db/*": ["src/db/*"],
-      // "@entity/*": ["src/db/entity/*"],
-      // "@validators/*": ["src/validators/*"],
     },
 
     /* Basic Options */
