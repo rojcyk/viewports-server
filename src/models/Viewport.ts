@@ -2,20 +2,13 @@ import {Entity, PrimaryGeneratedColumn, Column, Unique, ManyToOne, JoinColumn } 
 
 import Platform from '@models/Platform'
 import Region from '@models/Region'
+import Display from '@models/Display'
 
 @Entity()
-@Unique("UQ_VIEWPORT", ['size', 'platform', 'region'])
+@Unique("UQ_VIEWPORT", ['display', 'platform', 'region'])
 export class Viewport {
   @PrimaryGeneratedColumn()
   id!: number
-
-  @Column({
-    name: 'size',
-    type: 'varchar',
-    length: 230,
-    unique: true,
-  })
-  size!: string
 
   @Column("decimal", {
     precision: 5,
@@ -23,7 +16,6 @@ export class Viewport {
   })
   share!: number
 
-  // @Column({ name: 'hovno' })
   @ManyToOne(type => Platform, platform => platform.viewport)
   @JoinColumn({
     name: 'platform'
@@ -35,6 +27,12 @@ export class Viewport {
     name: 'region'
   })
   region!: Region
+
+  @ManyToOne(type => Display, display => display.viewport)
+  @JoinColumn({
+    name: 'display'
+  })
+  display!: Display
 }
 
 export default Viewport
