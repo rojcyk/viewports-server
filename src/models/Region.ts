@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 
-import Viewport from '@models/Viewport'
+// import Viewport from '@models/viewport'
 
 @Entity()
 export class Region {
@@ -26,8 +26,8 @@ export class Region {
   })
   url!: string
 
-  @OneToMany(type => Viewport, viewport => viewport.platform)
-  viewport!: Viewport
+  // @OneToMany(type => Viewport, viewport => viewport.region)
+  // viewports?: Viewport[]
 }
 
 export default Region

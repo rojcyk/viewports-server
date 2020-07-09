@@ -16,22 +16,22 @@ export class Viewport {
   })
   share!: number
 
-  @ManyToOne(type => Platform, platform => platform.viewport)
-  @JoinColumn({
-    name: 'platform'
-  })
+  @ManyToOne(type => Platform)
+  // @JoinColumn({
+  //   name: 'platform'
+  // })
   platform!: Platform
 
-  @ManyToOne(type => Region, region => region.viewport)
-  @JoinColumn({
-    name: 'region'
-  })
+  @ManyToOne(type => Region)
+  // @JoinColumn({
+  //   name: 'region'
+  // })
   region!: Region
 
-  @ManyToOne(type => Display, display => display.viewport)
-  @JoinColumn({
-    name: 'display'
-  })
+  @ManyToOne(type => Display)
+  // @JoinColumn({
+  //   name: 'display'
+  // })
   display!: Display
 }
 
