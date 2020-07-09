@@ -10,8 +10,8 @@ export default class CreateUsers implements Seeder {
       .into(Platform)
       .values([
         { code: 'mobile', title: 'Mobile' },
-        { code: 'tablet', title: 'tablet' },
-        { code: 'desktop', title: 'desktop' },
+        { code: 'tablet', title: 'Tablet' },
+        { code: 'desktop', title: 'Desktop' },
       ])
       .execute()
   }
