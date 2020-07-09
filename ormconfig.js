@@ -16,10 +16,8 @@ module.exports = {
   seeds: [`${folderPath}/seeds/**/*.{ts,js}`],
   factories: [`${folderPath}/factories/**/*.{ts,js}`],
   synchronize: false,
-  // subscribers: ["src/db/subscriber/**/*.ts"],
   cli: {
      entitiesDir: `${folderPath}/models`,
      migrationsDir: `${folderPath}/migrations`,
-    //  subscribersDir: "src/db/subscriber"
   }
 }
