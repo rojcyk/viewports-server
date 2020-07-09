@@ -1,6 +1,8 @@
 const path = require('path')
-const entities = path.join(__dirname, 'src/models', `*.{ts,js}`)
-const migrations = path.join(__dirname, 'src/migrations', `*.{ts,js}`)
+
+const folderPath = process.env.NODE_ENV === 'production' ? 'dist' : 'src'
+const entities = path.join(__dirname, `${folderPath}/models`, `*.{ts,js}`)
+const migrations = path.join(__dirname, `${folderPath}/migrations`, `*.{ts,js}`)
 
 module.exports = {
   type: 'postgres',
@@ -11,13 +13,13 @@ module.exports = {
   database: process.env.DB_NAME,
   entities: [entities],
   migrations: [migrations],
-  seeds: ['src/seeds/**/*{.ts,.js}'],
-  factories: ['src/factories/**/*{.ts,.js}'],
+  seeds: [`${folderPath}/seeds/**/*.{ts,js}`],
+  factories: [`${folderPath}/factories/**/*.{ts,js}`],
   synchronize: false,
   // subscribers: ["src/db/subscriber/**/*.ts"],
   cli: {
-     entitiesDir: 'src/models',
-     migrationsDir: 'src/migrations',
+     entitiesDir: `${folderPath}/models`,
+     migrationsDir: `${folderPath}/migrations`,
     //  subscribersDir: "src/db/subscriber"
   }
 }
