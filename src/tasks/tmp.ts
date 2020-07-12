@@ -1,22 +1,28 @@
 import 'reflect-metadata'
 import {createConnection, ConnectionOptions, Repository} from "typeorm"
+import dayjs from 'dayjs'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+
+dayjs.extend(weekOfYear)
 
 import dbConfig from '../../ormconfig'
 
 import asyncForEach from '@helpers/asyncForEach'
 import { getManager } from 'typeorm'
 import statCounter from '@helpers/statCounter'
-import tempData from './tempData'
+// import tempData from './tempData'
 
 import Display from '@models/Display'
 import Platform from '@models/Platform'
 import Region from '@models/Region'
 import Viewport from '@models/Viewport'
+import Week from '@models/Week'
 
 type Repositories = {
   Displays: Repository<Display>,
   Viewports: Repository<Viewport>,
-  Regions: Repository<Region>
+  Regions: Repository<Region>,
+  Weeks: Repository<Week>
 }
 
 const iterateContinents = async (platform: Platform, platformData: StatCounter.PlatformData) => {
@@ -25,6 +31,7 @@ const iterateContinents = async (platform: Platform, platformData: StatCounter.P
   const Displays = getManager().getRepository(Display)
   const Regions = getManager().getRepository(Region)
   const Viewports = getManager().getRepository(Viewport)
+  const Weeks = getManager().getRepository(Week)
 
   await asyncForEach(continents, async (continent: [StatCounter.RegionCode, StatCounter.Result[]]) => {
     const continentCode = continent[0]
@@ -33,13 +40,17 @@ const iterateContinents = async (platform: Platform, platformData: StatCounter.P
     await iterateResults(platform, platformData, continentCode, continentResults, {
       Displays,
       Viewports,
-      Regions
+      Regions,
+      Weeks
     })
   })
 }
 
 
 const iterateResults = async (platform: Platform, platformData: StatCounter.PlatformData, regionName: StatCounter.RegionCode, data: StatCounter.Result[], repositories: Repositories) => {
+  const weekNumber = dayjs().week()
+  const week = await processWeek(weekNumber, repositories.Weeks)
+
   await asyncForEach(data, async (result: StatCounter.Result) => {
     const display = await processDisplay(result.resolution, repositories.Displays)
     const region = await processRegion(regionName, repositories.Regions)
@@ -53,6 +64,7 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
 
       if (findViewport) {
         findViewport.share = result.share
+        findViewport.week = week
         await repositories.Viewports.save(findViewport)
 
         console.log(`Updating viewport: ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
@@ -63,6 +75,7 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         viewport.display = display
         viewport.region = region
         viewport.share = result.share
+        viewport.week = week
 
         await repositories.Viewports.save(viewport)
 
@@ -94,6 +107,22 @@ const processDisplay = async (size: string, repository: Repository<Display>): Pr
     return display
   } else {
     return null
+  }
+}
+
+const processWeek = async (weekNumber: number, repository: Repository<Week>): Promise<Week> => {
+  const week = await repository.findOne({ number: weekNumber })
+  
+  if (week) {
+    return week
+  } else {
+    let newWeek = new Week()
+    newWeek.number = weekNumber
+    newWeek.year = dayjs().year()
+
+    await repository.save(newWeek)
+
+    return newWeek
   }
 }
 
