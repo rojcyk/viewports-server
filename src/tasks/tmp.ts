@@ -67,7 +67,7 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         findViewport.week = week
         await repositories.Viewports.save(findViewport)
 
-        console.log(`Updating viewport: ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
+        console.log(`Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
       } else {
         let viewport = new Viewport()
 
@@ -79,7 +79,7 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
 
         await repositories.Viewports.save(viewport)
 
-        console.log(`Created new: ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
+        console.log(`Created new: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
       }
     }
   })
