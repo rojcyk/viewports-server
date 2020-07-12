@@ -14,15 +14,7 @@ export default async (
   const allRegions = await regionRepository.find()
 
   // const regions = Object.entries(REGIONS)
-  const platformData: StatCounter.PlatformData = {
-    ww: [],
-    af: [],
-    as: [],
-    eu: [],
-    oc: [],
-    na: [],
-    sa: [],
-  }
+  const platformData: StatCounter.PlatformData = {}
 
   await asyncForEach(allRegions, async (region: Region) => {
       console.log(`- Downloading ${platformName} for ${region.title} ...`)
