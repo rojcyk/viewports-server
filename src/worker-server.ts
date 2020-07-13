@@ -8,10 +8,9 @@ const PORT = process.env.PORT || '8000'
 
 createConnection(dbConfig as ConnectionOptions).then(connection => {
   console.log(`[server] Local enviroment: ${process.env.NODE_ENV}`)
-  console.log(`[server] Connected to the database: ${process.env.DB_NAME}`)
+  console.log(`[server] Server application is up and running on port ${PORT}`)
 
   app.listen(PORT)
-  console.log(`[server] Server application is up and running on port ${PORT}`)
 
 }).catch(error => console.log("[server] TypeORM connection error: ", error))
 

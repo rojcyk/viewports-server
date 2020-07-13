@@ -68,7 +68,7 @@ export default async function (
     handleSuccess(200, responseObject, res)
 
   } catch (e) {
-    console.log(e)
+    // console.log(e)
     throw new ErrorHandler(500, 'Something went horribly wrong.')
   }
 }
