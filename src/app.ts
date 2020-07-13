@@ -32,6 +32,12 @@ app.use(bodyParser.json())
  * ROUTES
  *****************************/
 
+app.get('/', (req, res, next) => {
+  res.send({
+    message: 'Maybe sometimes.'
+  })
+})
+
 app.use('/api', router)
 
 /*****************************
