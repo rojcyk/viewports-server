@@ -1,6 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany } from "typeorm"
-
-// import Viewport from '@models/viewport'
+import {Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
 export class Display {
@@ -18,9 +16,6 @@ export class Display {
     type: 'integer',
   })
   height!: number
-
-  // @OneToMany(type => Viewport, viewport => viewport.display)
-  // viewports?: Viewport[]
 }
 
 export default Display

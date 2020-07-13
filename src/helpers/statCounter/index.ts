@@ -12,8 +12,6 @@ export default async (
 
   let regionRepository = getManager().getRepository(Region)
   const allRegions = await regionRepository.find()
-
-  // const regions = Object.entries(REGIONS)
   const platformData: StatCounter.PlatformData = {}
 
   await asyncForEach(allRegions, async (region: Region) => {

@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, Unique, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import {Entity, PrimaryGeneratedColumn, Column, Unique, ManyToOne } from "typeorm"
 
 import Platform from '@models/Platform'
 import Region from '@models/Region'
@@ -47,7 +47,7 @@ export class Viewport {
 
   @ManyToOne(type => Week)
   // @JoinColumn({
-  //   name: 'display'
+  //   name: 'week'
   // })
   week!: Week
 

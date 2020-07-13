@@ -60,10 +60,8 @@ export default async function (
           take: 10,
           relations: ['platform','region', 'display', 'week'],
         })
-
         tmpPlatform[`${region.code}`] = prepareViewports(allViewports)
       })
-
       responseObject[`${platform.code}`] = tmpPlatform
     })
 

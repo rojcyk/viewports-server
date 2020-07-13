@@ -142,6 +142,8 @@ const processRegion = async (regionCode: StatCounter.RegionCode, repository: Rep
 ///////////////////////////////
 
 createConnection(dbConfig as ConnectionOptions).then(async connection => {
+  console.log('Connected to the database and running the task.')
+
   let platformRepository = connection.getRepository(Platform)
   let allPlatforms = await platformRepository.find()
 

@@ -1,6 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany } from "typeorm"
-
-// import Viewport from '@models/viewport'
+import {Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
 export class Platform {
@@ -19,9 +17,6 @@ export class Platform {
     length: 230
   })
   title!: string
-
-  // @OneToMany(type => Viewport, viewport => viewport.platform)
-  // viewports?: Viewport[]
 }
 
 export default Platform
