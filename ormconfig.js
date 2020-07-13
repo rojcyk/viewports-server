@@ -13,6 +13,7 @@ module.exports = {
   database: process.env.DB_NAME,
   entities: [entities],
   migrations: [migrations],
+  migrationsRun: true,
   seeds: [`${folderPath}/seeds/**/*.{ts,js}`],
   factories: [`${folderPath}/factories/**/*.{ts,js}`],
   synchronize: false,
