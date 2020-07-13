@@ -10,7 +10,7 @@
     "url": "https://github.com/rojcyk/viewports-server.git"
   },
   "scripts": {
-    "start": "NODE_ENV=production node --require dotenv/config ./dist/worker-server.js",
+    "start": "NODE_ENV=production node ./dist/worker-server.js",
     "build": "babel src --out-dir dist --extensions '.ts'",
     "dev": "nodemon",
     "tsc": "tsc",
@@ -20,7 +20,7 @@
     "migration:generate": "yarn run typeorm migration:generate -n",
     "seed:run": "yarn run typeorm-seeding seed",
     "db:drop": "yarn run typeorm schema:drop",
-    "task:test": "NODE_ENV=production node --require dotenv/config ./dist/tasks/tmp.js",
+    "task:test": "NODE_ENV=production node ./dist/tasks/tmp.js",
     "task:test:dev": "NODE_ENV=development babel-node --require dotenv/config ./src/tasks/tmp.ts --extensions \".ts\"",
     "reset" : "rm ./src/migrations/* && yarn run db:drop && yarn run migration:generate SchemaInit && yarn run migration:run && yarn run seed:run"
   },
