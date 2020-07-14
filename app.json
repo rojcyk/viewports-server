@@ -22,9 +22,8 @@
     }
   },
   "addons": [
-    "heroku-postgresql",
     {
-      "plan": "hobby-dev",
+      "plan": "heroku-postgresql:hobby-dev",
       "options": {
         "version": "12.3"
       }
