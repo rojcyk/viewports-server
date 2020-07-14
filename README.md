@@ -63,4 +63,4 @@ Now that everything is setup you will need a couple of scripts for convenient lo
 - `yarn run dev:migration:generate [name]` - If you update the models, run this script. It will generate updated migrations.
 - `yarn run dev:seed:run` - It populates the database with required dataset _(should be run second)_
 - `yarn run dev:task:update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
-- `dev:db:drop` - If you would like to delete everything and start from scratch.
+- `yarn run dev:db:drop` - If you would like to delete everything and start from scratch.
