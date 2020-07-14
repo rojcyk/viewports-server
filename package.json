@@ -13,7 +13,7 @@
     "start": "NODE_ENV=production node ./dist/worker-server.js",
     "build": "babel src --out-dir dist --extensions '.ts'",
     "migrate": "NODE_ENV=production typeorm migration:run",
-    "seed": "NODE_ENV=production typeorm-seeding seed",
+    "seed": "NODE_ENV=production node ./node_modules/typeorm/cli.js seed",
     "update": "NODE_ENV=production node ./dist/tasks/downloadData.js",
     "initDatabase": "yarn run migrate && yarn run seed && yarn run update",
     "dev": "nodemon",
