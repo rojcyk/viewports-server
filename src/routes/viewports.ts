@@ -2,7 +2,7 @@ import Express from 'express'
 import ErrorHandler, { handleSuccess, } from '@helpers/responseHandler'
 import { getManager } from 'typeorm'
 import Viewport, { ViewportApiResponse } from '@models/Viewport'
-import Week from '@models/Month'
+import Month from '@models/Month'
 import Platform from '@models/Platform'
 import Region from '@models/Region'
 import asyncForEach from '@helpers/asyncForEach'
@@ -25,11 +25,11 @@ export default async function (
   try {
 
     const Viewports = getManager().getRepository(Viewport)
-    const Weeks = getManager().getRepository(Week)
+    const Months = getManager().getRepository(Month)
     const Platforms = getManager().getRepository(Platform)
     const Regions = getManager().getRepository(Region)
 
-    const latestWeek = await Weeks.findOne({ order: { id: "DESC" }, })
+    const latestMonth = await Months.findOne({ order: { id: "DESC" }, })
     const platforms = await Platforms.find({ order: { id: "ASC" }, })
     const regions = await Regions.find({ order: { id: "ASC" }, })
 
@@ -49,7 +49,7 @@ export default async function (
             share: "DESC"
           },
           where: {
-            week: latestWeek,
+            month: latestMonth,
             region: {
               id: region.id
             },
@@ -58,7 +58,7 @@ export default async function (
             }
           },
           take: 10,
-          relations: ['platform','region', 'display', 'week'],
+          relations: ['platform','region', 'display', 'month'],
         })
         tmpPlatform[`${region.code}`] = prepareViewports(allViewports)
       })
@@ -68,7 +68,7 @@ export default async function (
     handleSuccess(200, responseObject, res)
 
   } catch (e) {
-    // console.log(e)
+    console.log(e)
     throw new ErrorHandler(500, 'Something went horribly wrong.')
   }
 }
