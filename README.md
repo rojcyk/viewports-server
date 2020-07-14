@@ -64,3 +64,31 @@ Now that everything is setup you will need a couple of scripts for convenient lo
 - `yarn run dev:seed:run` - It populates the database with required dataset _(should be run second)_
 - `yarn run dev:task:update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
 - `yarn run dev:db:drop` - If you would like to delete everything and start from scratch.
+
+<br />
+
+## Functionality
+
+The primary thing this server does is that it opens up its `/api/viewports` route. You can expect a response like this:
+
+```json
+{
+  "status": "success",
+  "code": 200,
+  "month": 6,
+  "year": 2020,
+  "data": {
+    "mobile": {
+      "ww": [{
+        "share": "23.25",
+        "display": {
+          "width": 360,
+          "height": 640
+        }
+      }]
+    }
+  } 
+}
+```
+
+_Example with only mobile platform, and world wide data. The actuall response contains data for all platforms and regions._
