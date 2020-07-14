@@ -11,8 +11,8 @@ _You should install all of these before you proceed to the actuall installation.
 
 ### Installation
 
-3. Install all the prerequisities and run `yarn install` or `npm install`
-1. Create a `.env` file with the following values
+1. Install all the prerequisities and run `yarn install` or `npm install`
+2. Create a `.env` file with the following values
 
 ```
 DB_USERNAME=
@@ -22,6 +22,6 @@ DB_HOST=
 ```
 
 3. Run the migrations `yarn run dev:migration:run` locally or `yarn run migrate` in production.
-5. Run the data seeds `yarn run dev:seed:run` locally or `yarn run seed` in production.
-6. Download the up to date data via `yarn run dev:task:update` locally or `yarn run update` in production.
-4. Run the app via `yarn run dev` locally or `yarn start` in production.
+4. Run the data seeds `yarn run dev:seed:run` locally or `yarn run seed` in production.
+5. Download the up to date data via `yarn run dev:task:update` locally or `yarn run update` in production.
+6. Run the app via `yarn run dev` locally or `yarn start` in production.
