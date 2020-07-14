@@ -20,13 +20,13 @@
 
 _You should install all of these before you proceed to the actuall installation._
 
-### Installation
+### Remote Installation
 
 You can deploy directly on Heroku!
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-or
+### Local installation
 
 0. Clone the repo
 1. Install all the prerequisities and run `yarn install` or `npm install`
