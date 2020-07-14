@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const path = require('path')
 
 const folderPath = process.env.NODE_ENV === 'production' ? 'dist' : 'src'
