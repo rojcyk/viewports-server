@@ -3,35 +3,28 @@ declare namespace StatCounter {
   type RegionCode = 'ww' | 'af' | 'as' | 'eu' | 'oc' | 'na' | 'sa'
   type PlatformCode = 'mobile' | 'tablet' | 'desktop'
 
-  interface Query {
+  type Query = {
     typeHidden: string
     type: string
   }
 
-  interface URLOptions {
+  type URLOptions = {
     device: string
     query: Query
-    regionHidden: string
+    regionHidden: RegionCode
     regionUrl: string
   }
 
-  interface Result {
+  type Result = {
     resolution: string
     share: number
   }
 
-  interface PlatformData {
-    [key: string]: Result[]
-    // ww: Result[]
-    // af: Result[]
-    // as: Result[]
-    // eu: Result[]
-    // oc: Result[]
-    // na: Result[]
-    // sa: Result[]
+  type PlatformData = {
+    [K in RegionCode]: Result[]
   }
 
-  interface Data {
-    [key: string]: PlatformData
+  type Data = {
+    [K in PlatformCode]: PlatformData
   }
 }
