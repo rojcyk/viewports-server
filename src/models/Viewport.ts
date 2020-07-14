@@ -3,7 +3,7 @@ import {Entity, PrimaryGeneratedColumn, Column, Unique, ManyToOne } from "typeor
 import Platform from '@models/Platform'
 import Region from '@models/Region'
 import Display from '@models/Display'
-import Week from '@models/Week'
+import Month from '@models/Month'
 
 export interface ViewportApiResponse {
   platform?: string
@@ -45,11 +45,11 @@ export class Viewport {
   // })
   display!: Display
 
-  @ManyToOne(type => Week)
+  @ManyToOne(type => Month)
   // @JoinColumn({
   //   name: 'week'
   // })
-  week!: Week
+  month!: Month
 
   /**
    * DB insert time.
