@@ -5,12 +5,13 @@ export const URL = `https://gs.statcounter.com/chart.php?`
 export const createCsvUrl = async (opts: StatCounter.URLOptions): Promise<string> => {
   const { query, device, regionHidden, regionUrl } = opts
 
+  // We are looking one quarter back.
   const date = {
     dateInt: dayjs()
-      .subtract(4, 'month')
+      .subtract(1, 'month')
       .format('YYYYMM'),
     dateOut: dayjs()
-      .subtract(2, 'month')
+      .subtract(1, 'month')
       .format('YYYYMM'),
   }
 
