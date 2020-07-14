@@ -46,8 +46,11 @@ DB_PASSWORD=
 DB_HOST=
 ```
 
+4. Run `yarn run dev:migration:run && yarn run dev:seed:run && yarn run dev:task:update`
+
 Now that everything is setup you will need a couple of scripts for convenient local development.
 
+- `yarn run dev` to start the local server
 - `yarn run dev:migration:run` - It runs all the migrations and prepares the database _(should be run first)_
 - `yarn run dev:seed:run` - It populates the database with required dataset _(should be run second)_
 - `yarn run dev:task:update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
