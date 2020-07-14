@@ -12,7 +12,7 @@
 </p>
 
 
-### Requirements
+## Requirements
 
 - It is a [Node.js](https://nodejs.org/en/) project.
 - It is written in [Typescript](https://www.typescriptlang.org/).
@@ -22,7 +22,7 @@ _You should install all of these before you proceed to the actuall installation.
 
 <br />
 
-### Remote Installation
+## Remote Installation
 
 You can deploy directly on Heroku!
 
@@ -39,7 +39,7 @@ There is a couple of scripts that you will need:
   
 <br />
 
-### Local installation
+## Local installation
 
 0. Clone the repo
 1. Install all the prerequisities via `yarn install`
