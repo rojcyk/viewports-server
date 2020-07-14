@@ -8,6 +8,7 @@ import helmet from 'helmet'
 
 import ErrorHandler, { handleError } from '@helpers/responseHandler'
 import router from './router'
+import NotFound from './routes/404'
 
 /*****************************
  * EXPRESS
@@ -51,6 +52,8 @@ app.use((
   next: Express.NextFunction) => {
     handleError(err, res)
 })
+
+app.use(NotFound)
 
 /*****************************
  * EXPORT
