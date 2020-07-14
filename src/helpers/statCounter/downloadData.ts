@@ -44,7 +44,7 @@ export const downloadDataForRegion = async (
 ): Promise<string> => {
   const URL = await createCsvUrl({
     device: platform,
-    regionHidden: region.code,
+    regionHidden: region.code as StatCounter.RegionCode,
     query: QUERIES.displayResolution,
     regionUrl: region.url
   })
