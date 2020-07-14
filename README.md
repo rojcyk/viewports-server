@@ -26,10 +26,17 @@ You can deploy directly on Heroku!
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+There is a couple of scripts that you will need:
+
+- `yarn run migrate` - It runs all the migrations and prepares the database _(should be run first)_
+- `yarn run seed` - It populates the database with required dataset _(should be run second)_
+- `yarn run update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
+- `typeorm schema:drop` - If you would like to delete everything and start from scratch.
+
 ### Local installation
 
 0. Clone the repo
-1. Install all the prerequisities via `yarn install` or `npm install`
+1. Install all the prerequisities via `yarn install`
 2. Create a `.env` file with the following values for the locall development.
 
 ```
@@ -39,7 +46,9 @@ DB_PASSWORD=
 DB_HOST=
 ```
 
-3. Run the migrations `yarn run dev:migration:run` locally or `yarn run migrate` in production.
-4. Run the data seeds `yarn run dev:seed:run` locally or `yarn run seed` in production.
-5. Download the up to date data via `yarn run dev:task:update` locally or `yarn run update` in production.
-6. Run the app via `yarn run dev` locally or `yarn start` in production.
+Now that everything is setup you will need a couple of scripts for convenient local development.
+
+- `yarn run dev:migration:run` - It runs all the migrations and prepares the database _(should be run first)_
+- `yarn run dev:seed:run` - It populates the database with required dataset _(should be run second)_
+- `yarn run dev:task:update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
+- `dev:db:drop` - If you would like to delete everything and start from scratch.
