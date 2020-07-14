@@ -12,7 +12,7 @@ _You should install all of these before you proceed to the actuall installation.
 ### Installation
 
 1. Install all the prerequisities and run `yarn install` or `npm install`
-2. Create a `.env` file with the following values
+2. Create a `.env` file with the following values for the locall development.
 
 ```
 DB_USERNAME=
