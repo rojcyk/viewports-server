@@ -1,10 +1,18 @@
 # viewports-server
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/350480bc997b459eaae80a2590dde884)](https://www.codacy.com/manual/rojcyk/viewports-server?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rojcyk/viewports-server&amp;utm_campaign=Badge_Grade)
 
+### Requirements
+
+- It is a [Node.js](https://nodejs.org/en/) project.
+- It is written in [Typescript](https://www.typescriptlang.org/).
+- It uses [Postgres](https://www.postgresql.org/download/) for database.
+
+_You should install all of these before you proceed to the actuall installation._
+
 ### Installation
 
-1. This project works with [Postgress](https://www.postgresql.org/download/). So set it up, before proceeding. 
-2. You need to create a `.env` file with the following values
+3. Install all the prerequisities and run `yarn install` or `npm install`
+1. Create a `.env` file with the following values
 
 ```
 DB_USERNAME=
@@ -13,5 +21,7 @@ DB_PASSWORD=
 DB_HOST=
 ```
 
-3. Install all the prerequisities `yarn install` or `npm install`
-4. Run the app via `yarn run dev` locally or `yarn start` on production.
+3. Run the migrations `yarn run dev:migration:run` locally or `yarn run migrate` in production.
+5. Run the data seeds `yarn run dev:seed:run` locally or `yarn run seed` in production.
+6. Download the up to date data via `yarn run dev:task:update` locally or `yarn run update` in production.
+4. Run the app via `yarn run dev` locally or `yarn start` in production.
