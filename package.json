@@ -23,7 +23,7 @@
     "dev:migration:generate": "yarn run dev:typeorm migration:generate -n",
     "dev:seed:run": "yarn run dev:typeorm-seeding seed",
     "dev:db:drop": "yarn run dev:typeorm schema:drop",
-    "dev:task:populateData": "babel-node --require dotenv/config ./src/tasks/downloadData.ts --extensions \".ts\"",
+    "dev:task:update": "babel-node --require dotenv/config ./src/tasks/downloadData.ts --extensions \".ts\"",
     "dev:reset": "yarn run dev:db:drop && yarn run dev:migration:generate SchemaInit && yarn run dev:migration:run && yarn run dev:seed:run"
   },
   "devDependencies": {
