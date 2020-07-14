@@ -1,6 +1,6 @@
 {
   "name": "Viewports Server",
-  "description": "Basic viewports server, running on express and postgres. Downloads adata, and updates them.",
+  "description": "Basic viewports server, running on express and postgres. Downloads data and periodically updates them.",
   "repository": "https://github.com/rojcyk/viewports-server",
   "keywords": ["node", "express"],
   "env": {
