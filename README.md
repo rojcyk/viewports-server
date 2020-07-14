@@ -69,7 +69,7 @@ Now that everything is setup you will need a couple of scripts for convenient lo
 
 ## Functionality
 
-The primary thing this server does is that it opens up its `/api/viewports` route. You can expect a response like this:
+The primary thing this server does is that it opens up its `[GET]` `/api/viewports` route. You can expect a response like this:
 
 ```json
 {
