@@ -10,15 +10,15 @@
     },
     "DB_PASSWORD": {
       "description": "The database password",
-      "value": true
+      "required": true
     },
     "DB_NAME": {
       "description": "The name of the database",
-      "value": true
+      "required": true
     },
     "DB_HOST": {
       "description": "The database host",
-      "value": true
+      "required": true
     }
   },
   "addons": [
