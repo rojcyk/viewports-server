@@ -21,7 +21,6 @@
 _You should install all of these before you proceed to the actuall installation._
 
 <br />
-<br />
 
 ### Remote Installation
 
@@ -38,7 +37,6 @@ There is a couple of scripts that you will need:
 - `yarn run update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
 - `typeorm schema:drop` - If you would like to delete everything and start from scratch.
   
-<br />
 <br />
 
 ### Local installation
