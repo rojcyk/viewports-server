@@ -20,11 +20,15 @@
 
 _You should install all of these before you proceed to the actuall installation._
 
+---
+
 ### Remote Installation
 
 You can deploy directly on Heroku!
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+#### Remote scripts
 
 There is a couple of scripts that you will need:
 
@@ -32,6 +36,8 @@ There is a couple of scripts that you will need:
 - `yarn run seed` - It populates the database with required dataset _(should be run second)_
 - `yarn run update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
 - `typeorm schema:drop` - If you would like to delete everything and start from scratch.
+
+---
 
 ### Local installation
 
@@ -47,6 +53,8 @@ DB_HOST=
 ```
 
 4. Run `yarn run dev:migration:run && yarn run dev:seed:run && yarn run dev:task:update`
+
+#### Local scripts
 
 Now that everything is setup you will need a couple of scripts for convenient local development.
 
