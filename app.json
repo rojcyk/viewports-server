@@ -1,0 +1,33 @@
+{
+  "name": "Viewports Server",
+  "description": "The basic express viewports server",
+  "repository": "https://github.com/rojcyk/viewports-server",
+  "keywords": ["node", "express"],
+  "env": {
+    "DB_USERNAME": {
+      "description": "The database username",
+      "required": true
+    },
+    "DB_PASSWORD": {
+      "description": "The database password",
+      "value": true
+    },
+    "DB_NAME": {
+      "description": "The name of the database",
+      "value": true
+    },
+    "DB_HOST": {
+      "description": "The database host",
+      "value": true
+    }
+  },
+  "addons": [
+    "heroku-postgresql",
+    {
+      "plan": "hobby-dev",
+      "options": {
+        "version": "12.3"
+      }
+    }
+  ]
+}
