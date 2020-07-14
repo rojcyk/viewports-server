@@ -1,7 +1,7 @@
 import Express from 'express'
 import { getManager } from 'typeorm'
 
-import ErrorHandler, { handleSuccess, } from '@helpers/responseHandler'
+import ErrorHandler from '@helpers/responseHandler'
 import asyncForEach from '@helpers/asyncForEach'
 
 import Viewport, { ViewportsApiResponse } from '@models/Viewport'
@@ -67,7 +67,15 @@ export default async function (
       responseObject[`${platform.code}`] = tmpPlatform
     })
 
-    handleSuccess(200, responseObject, res)
+    res
+      .status(200)
+      .json({
+        status: 'success',
+        code: 200,
+        month: latestMonth?.number,
+        year: latestMonth?.year,
+        data: responseObject
+      })
 
   } catch (e) {
     console.log(e)

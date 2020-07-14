@@ -24,12 +24,12 @@ export default class ErrorHandler extends Error {
   }
 }
 
-export const handleSuccess = (statusCode: number, data: any, res: Response) => {
-  res
-    .status(statusCode)
-    .json({
-      status: 'success',
-      code: statusCode,
-      data: data
-    })
-}
+// export const handleSuccess = (statusCode: number, data: any, res: Response) => {
+//   res
+//     .status(statusCode)
+//     .json({
+//       status: 'success',
+//       code: statusCode,
+//       data: data
+//     })
+// }
