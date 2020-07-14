@@ -1,10 +1,18 @@
 <p align="center">
-    <img src="./logo.png" width="128" height="128">
+  <img src="./logo.png" width="128" height="128">
+  <br>
+  <br>
+  <br>
+    <a href="https://www.codacy.com/manual/rojcyk/viewports-server?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rojcyk/viewports-server&amp;utm_campaign=Badge_Grade">
+       <img src="https://app.codacy.com/project/badge/Grade/350480bc997b459eaae80a2590dde884">
+    </a>
+    <a href="https://david-dm.org/rojcyk/viewports-server">
+       <img src="https://david-dm.org/rojcyk/viewports-server.svg">
+    </a>
 </p>
 
 
 # viewports-server
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/350480bc997b459eaae80a2590dde884)](https://www.codacy.com/manual/rojcyk/viewports-server?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rojcyk/viewports-server&amp;utm_campaign=Badge_Grade)
 
 ### Requirements
 
@@ -29,7 +37,7 @@ or
 ```
 DB_USERNAME=
 DB_NAME=
-DB_PASSWORD=
+DB_PASSWORD=    
 DB_HOST=
 ```
 
