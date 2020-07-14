@@ -1,6 +1,6 @@
 {
   "name": "Viewports Server",
-  "description": "The basic express viewports server",
+  "description": "Basic viewports server, running on express and postgres. Downloads adata, and updates them.",
   "repository": "https://github.com/rojcyk/viewports-server",
   "keywords": ["node", "express"],
   "env": {
@@ -27,6 +27,9 @@
       "options": {
         "version": "12.3"
       }
+    },
+    {
+      "plan": "heroku-scheduler"
     }
   ]
 }
