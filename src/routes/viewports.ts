@@ -1,14 +1,16 @@
 import Express from 'express'
-import ErrorHandler, { handleSuccess, } from '@helpers/responseHandler'
 import { getManager } from 'typeorm'
-import Viewport, { ViewportApiResponse } from '@models/Viewport'
+
+import ErrorHandler, { handleSuccess, } from '@helpers/responseHandler'
+import asyncForEach from '@helpers/asyncForEach'
+
+import Viewport, { ViewportsApiResponse } from '@models/Viewport'
 import Month from '@models/Month'
 import Platform from '@models/Platform'
 import Region from '@models/Region'
-import asyncForEach from '@helpers/asyncForEach'
 
 const prepareViewports = (viewports: Viewport[]) => {
-  let tmpArray: ViewportApiResponse[] = []
+  let tmpArray: ViewportsApiResponse[] = []
 
   viewports.forEach(viewport => {
     tmpArray.push(viewport.apiJSON({}))
@@ -35,13 +37,13 @@ export default async function (
 
     let responseObject: {
       [key: string]: {
-        [key: string]: ViewportApiResponse[]
+        [key: string]: ViewportsApiResponse[]
       }
     } = {}
 
 
     await asyncForEach (platforms, async (platform: Platform) => {
-      let tmpPlatform: { [key: string]: ViewportApiResponse[] } = {}
+      let tmpPlatform: { [key: string]: ViewportsApiResponse[] } = {}
 
       await asyncForEach (regions, async (region: Region) => {
         const allViewports: Viewport[] = await Viewports.find({

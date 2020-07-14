@@ -5,7 +5,7 @@ import Region from '@models/Region'
 import Display from '@models/Display'
 import Month from '@models/Month'
 
-export interface ViewportApiResponse {
+export interface ViewportsApiResponse {
   platform?: string
   region?: string,
   share: number
@@ -66,9 +66,9 @@ export class Viewport {
   apiJSON = (
     { platform = false, region = false } :
     { platform?: boolean, region?: boolean }
-  ): ViewportApiResponse => {
+  ): ViewportsApiResponse => {
 
-    let tmpObject: ViewportApiResponse = {
+    let tmpObject: ViewportsApiResponse = {
       share: this.share,
       display: {
         width: this.display.width,
