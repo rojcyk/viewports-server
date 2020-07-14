@@ -12,8 +12,6 @@
 </p>
 
 
-# viewports-server
-
 ### Requirements
 
 - It is a [Node.js](https://nodejs.org/en/) project.
