@@ -16,6 +16,13 @@ _You should install all of these before you proceed to the actuall installation.
 
 ### Installation
 
+You can deploy directly on Heroku!
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+or
+
+0. Clone the repo
 1. Install all the prerequisities and run `yarn install` or `npm install`
 2. Create a `.env` file with the following values for the locall development.
 
