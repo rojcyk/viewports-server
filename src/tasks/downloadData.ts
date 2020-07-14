@@ -1,62 +1,55 @@
 import 'reflect-metadata'
 import {createConnection, ConnectionOptions, Repository} from "typeorm"
 import dayjs from 'dayjs'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
 
-dayjs.extend(weekOfYear)
+// import weekOfYear from 'dayjs/plugin/weekOfYear'
+// dayjs.extend(weekOfYear)
 
 import dbConfig from '../../ormconfig'
 
 import asyncForEach from '@helpers/asyncForEach'
 import { getManager } from 'typeorm'
 import statCounter from '@helpers/statCounter'
-// import tempData from './tempData'
 
 import Display from '@models/Display'
 import Platform from '@models/Platform'
 import Region from '@models/Region'
 import Viewport from '@models/Viewport'
-import Week from '@models/Week'
+import Month from '@models/Month'
+import { platform } from 'process'
 
 type Repositories = {
-  Displays: Repository<Display>,
-  Viewports: Repository<Viewport>,
-  Regions: Repository<Region>,
-  Weeks: Repository<Week>
+  displays: Repository<Display>,
+  viewports: Repository<Viewport>,
+  regions: Repository<Region>,
+  months: Repository<Month>,
+  platforms: Repository<Platform>
 }
 
-const iterateContinents = async (platform: Platform, platformData: StatCounter.PlatformData) => {
+const iterateContinents = async (platform: Platform, platformData: StatCounter.PlatformData, repositories: Repositories) => {
   const continents = Object.entries(platformData)
-
-  const Displays = getManager().getRepository(Display)
-  const Regions = getManager().getRepository(Region)
-  const Viewports = getManager().getRepository(Viewport)
-  const Weeks = getManager().getRepository(Week)
 
   await asyncForEach(continents, async (continent: [StatCounter.RegionCode, StatCounter.Result[]]) => {
     const continentCode = continent[0]
     const continentResults = continent[1]
 
-    await iterateResults(platform, platformData, continentCode, continentResults, {
-      Displays,
-      Viewports,
-      Regions,
-      Weeks
-    })
+    await iterateResults(platform, platformData, continentCode, continentResults, repositories)
   })
 }
 
 
 const iterateResults = async (platform: Platform, platformData: StatCounter.PlatformData, regionName: StatCounter.RegionCode, data: StatCounter.Result[], repositories: Repositories) => {
-  const weekNumber = dayjs().week()
-  const week = await processWeek(weekNumber, repositories.Weeks)
+  const month = await processCurrentMonth(dayjs().month(), repositories.months)
 
+  // Here we iterate over all the different results
+  // If they are some missing displays, we create them
+  // If there are missing viewports for the current month we create them, otherwise we update them
   await asyncForEach(data, async (result: StatCounter.Result) => {
-    const display = await processDisplay(result.resolution, repositories.Displays)
-    const region = await processRegion(regionName, repositories.Regions)
+    const display = await processDisplay(result.resolution, repositories.displays)
+    const region = await getRegion(regionName, repositories.regions)
 
     if (display && region) {
-      const findViewport = await repositories.Viewports.findOne({ where: { 
+      const findViewport = await repositories.viewports.findOne({ where: { 
         platform,
         display,
         region
@@ -64,8 +57,8 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
 
       if (findViewport) {
         findViewport.share = result.share
-        findViewport.week = week
-        await repositories.Viewports.save(findViewport)
+        findViewport.month = month
+        await repositories.viewports.save(findViewport)
 
         console.log(`Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
       } else {
@@ -75,9 +68,9 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         viewport.display = display
         viewport.region = region
         viewport.share = result.share
-        viewport.week = week
+        viewport.month = month
 
-        await repositories.Viewports.save(viewport)
+        await repositories.viewports.save(viewport)
 
         console.log(`Created new: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
       }
@@ -110,23 +103,23 @@ const processDisplay = async (size: string, repository: Repository<Display>): Pr
   }
 }
 
-const processWeek = async (weekNumber: number, repository: Repository<Week>): Promise<Week> => {
-  const week = await repository.findOne({ number: weekNumber })
+const processCurrentMonth = async (monthNumber: number, repository: Repository<Month>): Promise<Month> => {
+  const month = await repository.findOne({ number: monthNumber })
   
-  if (week) {
-    return week
+  if (month) {
+    return month
   } else {
-    let newWeek = new Week()
-    newWeek.number = weekNumber
-    newWeek.year = dayjs().year()
+    let newMonth = new Month()
+    newMonth.number = monthNumber
+    newMonth.year = dayjs().year()
 
-    await repository.save(newWeek)
+    await repository.save(newMonth)
 
-    return newWeek
+    return newMonth
   }
 }
 
-const processRegion = async (regionCode: StatCounter.RegionCode, repository: Repository<Region>) => {
+const getRegion = async (regionCode: StatCounter.RegionCode, repository: Repository<Region>) => {
   const region = await repository.findOne({ where: { 
     code: regionCode
   }})
@@ -135,8 +128,6 @@ const processRegion = async (regionCode: StatCounter.RegionCode, repository: Rep
   else return null
 }
 
-
-
 ///////////////////////////////
 // THE MAIN THING
 ///////////////////////////////
@@ -144,12 +135,25 @@ const processRegion = async (regionCode: StatCounter.RegionCode, repository: Rep
 createConnection(dbConfig as ConnectionOptions).then(async connection => {
   console.log('Connected to the database and running the task.')
 
-  let platformRepository = connection.getRepository(Platform)
-  let allPlatforms = await platformRepository.find()
+  const repositories = {
+    platforms: getManager().getRepository(Platform),
+    displays: getManager().getRepository(Display),
+    regions: getManager().getRepository(Region),
+    viewports: getManager().getRepository(Viewport),
+    months: getManager().getRepository(Month)
+  }
 
+  const allPlatforms = await repositories.platforms.find()
+
+ // First we iterate over all the platforms
   await asyncForEach(allPlatforms, async (platform: Platform) => {
+
+    // Then we download the data for the respective platform. It downloads data for all
+    // the different continents
     const platformData = await statCounter(platform.code as StatCounter.PlatformCode)
-    await iterateContinents(platform, platformData)
+
+    // Finally I iterate over the downloaded platform and update the database
+    await iterateContinents(platform, platformData, repositories)
   })
 
   await connection.close()
