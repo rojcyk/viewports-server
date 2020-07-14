@@ -29,7 +29,7 @@ You can deploy directly on Heroku!
 ### Local installation
 
 0. Clone the repo
-1. Install all the prerequisities and run `yarn install` or `npm install`
+1. Install all the prerequisities via `yarn install` or `npm install`
 2. Create a `.env` file with the following values for the locall development.
 
 ```
