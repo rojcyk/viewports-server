@@ -29,7 +29,7 @@
       }
     },
     {
-      "plan": "heroku-scheduler"
+      "plan": "scheduler"
     }
   ]
 }
