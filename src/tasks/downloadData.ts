@@ -2,10 +2,9 @@ import 'reflect-metadata'
 import {createConnection, ConnectionOptions, Repository} from "typeorm"
 import dayjs from 'dayjs'
 
-// import weekOfYear from 'dayjs/plugin/weekOfYear'
-// dayjs.extend(weekOfYear)
-
 import dbConfig from '../../ormconfig'
+
+import rollbar from '@services/rollbar'
 
 import asyncForEach from '@helpers/asyncForEach'
 import { getManager } from 'typeorm'
@@ -16,7 +15,6 @@ import Platform from '@models/Platform'
 import Region from '@models/Region'
 import Viewport from '@models/Viewport'
 import Month from '@models/Month'
-import { platform } from 'process'
 
 type Repositories = {
   displays: Repository<Display>,
@@ -60,7 +58,14 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         findViewport.month = month
         await repositories.viewports.save(findViewport)
 
+        const logMessage = `Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`
+
         console.log(`Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
+        rollbar.info('Viewport updated', {
+          share: result.share,
+          displayWidth: display.width,
+          displayHeight: display.height
+        })
       } else {
         let viewport = new Viewport()
 
@@ -73,6 +78,11 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         await repositories.viewports.save(viewport)
 
         console.log(`Created new: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
+        rollbar.info('Viewport created', {
+          share: result.share,
+          displayWidth: display.width,
+          displayHeight: display.height
+        })
       }
     }
   })
@@ -132,8 +142,12 @@ const getRegion = async (regionCode: StatCounter.RegionCode, repository: Reposit
 // THE MAIN THING
 ///////////////////////////////
 
+
+
 createConnection(dbConfig as ConnectionOptions).then(async connection => {
-  console.log('Connected to the database and running the task.')
+  console.log('Running the update task')
+
+  let totalData: string[] = []
 
   const repositories = {
     platforms: getManager().getRepository(Platform),
@@ -154,6 +168,8 @@ createConnection(dbConfig as ConnectionOptions).then(async connection => {
 
     // Finally I iterate over the downloaded platform and update the database
     await iterateContinents(platform, platformData, repositories)
+
+    console.log(totalData)
   })
 
   await connection.close()

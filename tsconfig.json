@@ -14,7 +14,8 @@
     "paths": {
       "@helpers/*": ["src/helpers/*"],
       "@routes/*": ["src/routes/*"],
-      "@models/*": ["src/models/*"]
+      "@models/*": ["src/models/*"],
+      "@services/*": ["src/services/*"],
     },
 
     /* Basic Options */
