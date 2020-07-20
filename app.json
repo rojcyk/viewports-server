@@ -30,6 +30,8 @@
     },
     {
       "plan": "scheduler"
+    },{
+      "plan": "rollbar:free"
     }
   ]
 }
