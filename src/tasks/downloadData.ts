@@ -147,8 +147,6 @@ const getRegion = async (regionCode: StatCounter.RegionCode, repository: Reposit
 createConnection(dbConfig as ConnectionOptions).then(async connection => {
   console.log('Running the update task')
 
-  let totalData: string[] = []
-
   const repositories = {
     platforms: getManager().getRepository(Platform),
     displays: getManager().getRepository(Display),
@@ -168,8 +166,6 @@ createConnection(dbConfig as ConnectionOptions).then(async connection => {
 
     // Finally I iterate over the downloaded platform and update the database
     await iterateContinents(platform, platformData, repositories)
-
-    console.log(totalData)
   })
 
   await connection.close()
