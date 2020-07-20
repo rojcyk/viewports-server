@@ -3,24 +3,6 @@
   "description": "Basic viewports server, running on express and postgres. Downloads data and periodically updates them.",
   "repository": "https://github.com/rojcyk/viewports-server",
   "keywords": ["node", "express"],
-  "env": {
-    "DB_USERNAME": {
-      "description": "The database username",
-      "required": true
-    },
-    "DB_PASSWORD": {
-      "description": "The database password",
-      "required": true
-    },
-    "DB_NAME": {
-      "description": "The name of the database",
-      "required": true
-    },
-    "DB_HOST": {
-      "description": "The database host",
-      "required": true
-    }
-  },
   "addons": [
     {
       "plan": "heroku-postgresql:hobby-dev",
