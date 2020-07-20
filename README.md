@@ -47,10 +47,8 @@ There is a couple of scripts that you will need:
 2. Create a `.env` file with the following values for the locall development.
 
 ```
-DB_USERNAME=
-DB_NAME=
-DB_PASSWORD=    
-DB_HOST=
+DATABASE_URL=
+ROLLBAR_ACCESS_TOKEN=
 ```
 
 4. Run `yarn run dev:migration:run && yarn run dev:seed:run && yarn run dev:task:update`
