@@ -8,11 +8,17 @@ export const createCsvUrl = async (opts: StatCounter.URLOptions): Promise<string
   // We are looking one month back.
   const date = {
     dateInt: dayjs()
-      .subtract(1, 'month')
+      .subtract(2, 'month')
       .format('YYYYMM'),
     dateOut: dayjs()
       .subtract(1, 'month')
       .format('YYYYMM'),
+    fromMonthToYear: dayjs()
+      .subtract(2, 'month')
+      .format('YYYY-MM'),
+    toMonthYear: dayjs()
+      .subtract(1, 'month')
+      .format('YYYY-MM')
   }
 
   return URL.concat(
@@ -25,8 +31,8 @@ export const createCsvUrl = async (opts: StatCounter.URLOptions): Promise<string
     `&region=${regionUrl}`,
     `&fromInt=${date.dateInt}`,
     `&toInt=${date.dateInt}`,
-    `&fromMonthYear=${date.dateInt}`,
-    `&toMonthYear=${date.dateOut}`,
+    `&fromMonthYear=${date.fromMonthToYear}`,
+    `&toMonthYear=${date.toMonthYear}`,
     `&csv=1`,
   )
 }
