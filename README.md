@@ -19,7 +19,7 @@
 - It is written in [Typescript](https://www.typescriptlang.org/).
 - It uses [Postgres](https://www.postgresql.org/download/) for database.
 
-_You should install all of these before you proceed to the actuall installation._
+_You should install all of these before you proceed with the local deployment._
 
 <br />
 
