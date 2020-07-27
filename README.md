@@ -36,6 +36,7 @@ There is a couple of scripts that you will need:
 - `yarn run migrate` - It runs all the migrations and prepares the database _(should be run first)_
 - `yarn run seed` - It populates the database with required dataset _(should be run second)_
 - `yarn run update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
+- `yarn run initDatabase` - It runs migration, seed, and update in sequence
 - `typeorm schema:drop` - If you would like to delete everything and start from scratch.
   
 <br />
