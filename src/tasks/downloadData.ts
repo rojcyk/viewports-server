@@ -60,7 +60,7 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
 
         const logMessage = `Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`
 
-        console.log(`Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
+        // console.log(`Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
         rollbar.info('Viewport updated', {
           share: result.share,
           displayWidth: display.width,
@@ -77,7 +77,7 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
 
         await repositories.viewports.save(viewport)
 
-        console.log(`Created new: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
+        // console.log(`Created new: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
         rollbar.info('Viewport created', {
           share: result.share,
           displayWidth: display.width,
@@ -141,8 +141,6 @@ const getRegion = async (regionCode: StatCounter.RegionCode, repository: Reposit
 ///////////////////////////////
 // THE MAIN THING
 ///////////////////////////////
-
-
 
 createConnection(dbConfig as ConnectionOptions).then(async connection => {
   console.log('Running the update task')
