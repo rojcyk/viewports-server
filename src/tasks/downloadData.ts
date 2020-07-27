@@ -4,8 +4,6 @@ import dayjs from 'dayjs'
 
 import dbConfig from '../../ormconfig'
 
-import rollbar from '@services/rollbar'
-
 import asyncForEach from '@helpers/asyncForEach'
 import { getManager } from 'typeorm'
 import statCounter from '@helpers/statCounter'
@@ -61,11 +59,6 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         const logMessage = `Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`
 
         // console.log(`Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
-        rollbar.info('Viewport updated', {
-          share: result.share,
-          displayWidth: display.width,
-          displayHeight: display.height
-        })
       } else {
         let viewport = new Viewport()
 
@@ -78,11 +71,6 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         await repositories.viewports.save(viewport)
 
         // console.log(`Created new: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
-        rollbar.info('Viewport created', {
-          share: result.share,
-          displayWidth: display.width,
-          displayHeight: display.height
-        })
       }
     }
   })

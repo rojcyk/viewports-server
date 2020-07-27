@@ -12,8 +12,9 @@
   "scripts": {
     "start": "NODE_ENV=production node ./dist/worker-server.js",
     "build": "babel src --out-dir dist --extensions '.ts'",
-    "migrate": "NODE_ENV=production typeorm migration:run",
-    "seed": "NODE_ENV=production node ./node_modules/typeorm/cli.js seed",
+    "clean": "rm -r dist ",
+    "migrate": "NODE_ENV=production ./node_modules/typeorm/cli.js migration:run",
+    "seed": "NODE_ENV=production node ./node_modules/typeorm-seeding/dist/cli.js seed",
     "update": "NODE_ENV=production node ./dist/tasks/downloadData.js",
     "initDatabase": "yarn run migrate && yarn run seed && yarn run update",
     "dev": "nodemon",
@@ -57,7 +58,6 @@
     "helmet": "^3.23.3",
     "neat-csv": "^5.2.0",
     "pg": "^8.2.1",
-    "rollbar": "^2.18.0",
     "typeorm": "^0.2.25",
     "typeorm-seeding": "^1.6.1"
   }
