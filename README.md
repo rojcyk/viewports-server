@@ -49,7 +49,6 @@ There is a couple of scripts that you will need:
 
 ```
 DATABASE_URL=
-ROLLBAR_ACCESS_TOKEN=
 ```
 
 4. Run `yarn run dev:migration:run && yarn run dev:seed:run && yarn run dev:task:update`
