@@ -5,10 +5,7 @@
   "keywords": ["node", "express"],
   "addons": [
     {
-      "plan": "heroku-postgresql:hobby-dev",
-      "options": {
-        "version": "12.3"
-      }
+      "plan": "heroku-postgresql:hobby-dev"
     },
     {
       "plan": "scheduler"
