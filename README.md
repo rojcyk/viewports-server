@@ -13,6 +13,10 @@
 
 <br />
 
+## About
+
+viewports-server is a server counterpart to the [viewports-client](https://github.com/rojcyk/viewports-client). What it does, is that it downloads data from [StatCounter](https://gs.statcounter.com/), it procecsses all the data, and transforms them into a format that the client can understand. The server itself is rather simple and has only one route available `host/api/viewports`
+
 ## Requirements
 
 - It is a [Node.js](https://nodejs.org/en/) project.
@@ -20,8 +24,6 @@
 - It uses [Postgres](https://www.postgresql.org/download/) for database.
 
 _You should install all of these before you proceed with the local deployment._
-
-<br />
 
 ## Remote Installation
 
@@ -39,7 +41,6 @@ There is a couple of scripts that you will need:
 - `yarn run initDatabase` - It runs migration, seed, and update in sequence
 - `typeorm schema:drop` - If you would like to delete everything and start from scratch.
   
-<br />
 
 ## Local installation
 
@@ -63,8 +64,6 @@ Now that everything is setup you will need a couple of scripts for convenient lo
 - `yarn run dev:seed:run` - It populates the database with required dataset _(should be run second)_
 - `yarn run dev:task:update` - It downloads the latest data from StatCounter and populates the database _(should be run periodically)_
 - `yarn run dev:db:drop` - If you would like to delete everything and start from scratch.
-
-<br />
 
 ## Functionality
 
