@@ -10,7 +10,8 @@ module.exports = {
     ["module-resolver", {
       root: ["./"],
       alias: {
-        "^@(.+)": "./src/\\1"
+        "@slack": '@slack',
+        "^@(.+)": "./src/\\1",
       }
     }],
     "babel-plugin-transform-typescript-metadata",
