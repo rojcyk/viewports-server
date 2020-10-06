@@ -1,4 +1,4 @@
-import Express from 'express'
+import Express, { NextFunction } from 'express'
 import bodyParser from 'body-parser'
 import helmet from 'helmet'
 
@@ -6,9 +6,11 @@ import helmet from 'helmet'
  * Local imports
  *****************************/
 
-import ErrorHandler, { handleError } from '@helpers/responseHandler'
+import { handleError } from '@helpers/responseError'
 import router from './router'
 import NotFound from './routes/404'
+import slackAuth from './routes/auth'
+import commandRouter from './routes/commandRouter'
 
 /*****************************
  * EXPRESS
@@ -28,6 +30,11 @@ app.use(helmet())
 
 // Parses json only
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// app.use((req, res, next) => {
+//   next()
+// })
 
 /*****************************
  * ROUTES
@@ -39,19 +46,23 @@ app.get('/', (req, res, next) => {
   })
 })
 
+app.get('/add', (req, res, next) => {
+  res.redirect(`${process.env.SLACK_ROOT_URL}/oauth/v2/authorize?client_id=${process.env.SLACK_CLIENT_ID}&client_secret=${process.env.SLACK_CLIENT_SECRET}&scope=${process.env.SLACK_APP_SCOPES}&redirect_uri=${process.env.SLACK_REDIRECT_URI}`)
+})
+
+app.get('/api/slack/auth', slackAuth)
+app.use('/api/slack/commands', commandRouter)
+app.post('/api/slack/actions', (req: Express.Request, res: Express.Response, next) => {
+  res.send({})
+})
+
 app.use('/api', router)
 
 /*****************************
  * ERROR HANDLER
  *****************************/
 
-app.use((
-  err: ErrorHandler,
-  req: Express.Request,
-  res: Express.Response,
-  next: Express.NextFunction) => {
-    handleError(err, res)
-})
+app.use(handleError)
 
 app.use(NotFound)
 
