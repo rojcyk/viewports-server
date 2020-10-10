@@ -1,16 +1,16 @@
 import Express, { NextFunction } from 'express'
 import bodyParser from 'body-parser'
 import helmet from 'helmet'
+import cors from 'cors'
 
 /*****************************
  * Local imports
  *****************************/
 
 import { handleError } from '@helpers/responseError'
-import router from './router'
 import NotFound from './routes/404'
-import slackAuth from './routes/auth'
-import commandRouter from './routes/commandRouter'
+import slackRouter from './routes/slackRouter'
+import viewports from './routes/viewports'
 
 /*****************************
  * EXPRESS
@@ -50,13 +50,8 @@ app.get('/add', (req, res, next) => {
   res.redirect(`${process.env.SLACK_ROOT_URL}/oauth/v2/authorize?client_id=${process.env.SLACK_CLIENT_ID}&client_secret=${process.env.SLACK_CLIENT_SECRET}&scope=${process.env.SLACK_APP_SCOPES}&redirect_uri=${process.env.SLACK_REDIRECT_URI}`)
 })
 
-app.get('/api/slack/auth', slackAuth)
-app.use('/api/slack/commands', commandRouter)
-app.post('/api/slack/actions', (req: Express.Request, res: Express.Response, next) => {
-  res.send({})
-})
-
-app.use('/api', router)
+app.use('/api/slack', slackRouter)
+app.use('/api/viewports', cors(), viewports)
 
 /*****************************
  * ERROR HANDLER

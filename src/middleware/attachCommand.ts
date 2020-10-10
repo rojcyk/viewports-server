@@ -1,5 +1,5 @@
 import Express from 'express'
-import Command, { OuterCommandEvent } from './command'
+import Command, { OuterCommandEvent } from '../command'
 
 /**
  * Parses subcommands and routes the request based on the subcommand

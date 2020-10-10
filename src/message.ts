@@ -1,7 +1,18 @@
-import { ContextBlock, DividerBlock, SectionBlock } from '@slack/web-api'
+import { ContextBlock, DividerBlock, SectionBlock, ActionsBlock } from '@slack/web-api'
 import { SlackWebAPI } from './slack'
+import fetch from 'node-fetch'
 
-type Blocks = (DividerBlock | SectionBlock | ContextBlock)[]
+type Blocks = (DividerBlock | SectionBlock | ContextBlock | ActionsBlock)[]
+
+interface ActionButton {
+  type: 'button',
+  text: {
+    type: 'plain_text',
+    emoji: boolean,
+    text: string
+  },
+  value: string
+}
 
 export default class Message {
   text: string
@@ -29,12 +40,56 @@ export default class Message {
     const message = {
       text: this.text,
       channel: channel,
-      user: user
+      user: user,
+      blocks: this.blocks
     }
 
     return SlackWebAPI.chat.postEphemeral(message)
       .then(res => { return res })
       .catch(err => { throw new Error(err) })
+  }
+
+  async respond (respondUrl: string, ephemeral: boolean = true) {
+    const message = {
+      text: this.text,
+      blocks: this.blocks,
+      delete_original: ephemeral ? false : true,
+      response_type: ephemeral ? 'ephemeral' : 'in_channel'
+    }
+
+    const getUserIdentity = await fetch(
+      respondUrl,
+      {
+        method: 'POST',
+        body: JSON.stringify(message)
+
+    })
+
+    // console.log()
+  
+    // if (getUserIdentity.ok) {
+    //   return await getUserIdentity.json()
+    // } else {
+    //   return null
+    // }
+  }
+
+  async postUpdate (channel: string, timestamp: string) {
+    const message = {
+      text: this.text,
+      channel: channel,
+      blocks: this.blocks,
+      ts: timestamp
+    }
+
+    console.log(message)
+
+    return SlackWebAPI.chat.update(message)
+      .then(res => { return res })
+      .catch(err => {
+        console.log(err)
+        throw new Error(err)
+      })
   }
 
   addContext (text: string) {
@@ -63,12 +118,12 @@ export default class Message {
     return this
   }
 
-//   addActions (elements) {
-//     this.blocks.push({
-//       type: 'actions',
-//       elements
-//     })
-//   }
+  addActions (elements: ActionButton[]) {
+    this.blocks.push({
+      type: 'actions',
+      elements
+    })
+  }
 
   addDivider () {
     this.blocks.push({
@@ -76,6 +131,9 @@ export default class Message {
     })
 
     return this
+  }
+  addFooter ( ) {
+    this.addContext('<https://github.com/rojcyk/figma-sweeper/issues|Support> | <https://github.com/sponsors/rojcyk|Donate>')
   }
 
 //   respond (responseUrl, replace = false) {

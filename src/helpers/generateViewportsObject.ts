@@ -18,8 +18,17 @@ const prepareViewports = (viewports: Viewport[]) => {
   return tmpArray
 }
 
-const generateViewportsObject = async (latestMonth: Month) => {
+const generateViewportsObject = async (month?: Month) => {
   try {
+    let latestMonth: Month
+
+    if (month) {
+      latestMonth = month
+    } else {
+      const Months = getManager().getRepository(Month)
+      latestMonth = await Months.findOne({ order: { id: "DESC" }, }) as Month
+    }
+
     const Viewports = getManager().getRepository(Viewport)
     const Platforms = getManager().getRepository(Platform)
     const Regions = getManager().getRepository(Region)
