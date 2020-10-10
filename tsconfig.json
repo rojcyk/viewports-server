@@ -16,7 +16,7 @@
       "@routes/*": ["src/routes/*"],
       "@models/*": ["src/models/*"],
       "@services/*": ["src/services/*"],
-      "@middleware/*": ["src/middleware/*"],
+      "@middleware/*": ["src/middleware/*"]
     },
 
     /* Basic Options */
