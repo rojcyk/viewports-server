@@ -6,7 +6,7 @@ import Express from 'express'
 
 import attachCommand from '@middleware/attachCommand'
 import attachMetadata from '@middleware/attachMetadata'
-import listSelect from './listSelect'
+import listSelect from '../../listSelect'
 
 /******************** *
  * SETUP

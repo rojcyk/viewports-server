@@ -1,4 +1,4 @@
-import Express, { NextFunction } from 'express'
+import Express from 'express'
 import bodyParser from 'body-parser'
 import helmet from 'helmet'
 import cors from 'cors'
@@ -9,8 +9,8 @@ import cors from 'cors'
 
 import { handleError } from '@helpers/responseError'
 import NotFound from './routes/404'
-import slackRouter from './routes/slackRouter'
-import viewports from './routes/viewports'
+import slackRouter from './routes/api/slack'
+import viewports from './routes/api/viewports'
 
 /*****************************
  * EXPRESS
@@ -31,10 +31,6 @@ app.use(helmet())
 // Parses json only
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
-// app.use((req, res, next) => {
-//   next()
-// })
 
 /*****************************
  * ROUTES
@@ -58,7 +54,6 @@ app.use('/api/viewports', cors(), viewports)
  *****************************/
 
 app.use(handleError)
-
 app.use(NotFound)
 
 /*****************************

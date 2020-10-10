@@ -1,12 +1,11 @@
 import Express from 'express'
-import bodyParser from 'body-parser'
 
 /******************** *
  * INTERNAL IMPORTS
 /******************** */
 
-import slackAuth from './auth'
-import commandRouter from './commandRouter'
+import auth from './auth'
+import commands from './commands'
 import actions from './actions'
 import events from './events'
 
@@ -16,9 +15,9 @@ import events from './events'
 
 const router = Express.Router()
 
+router.get('/auth', auth)
 router.post('/events', events)
-router.get('/auth', slackAuth)
-router.use('/commands', commandRouter)
+router.use('/commands', commands)
 router.post('/actions', actions)
 
 /******************** *
