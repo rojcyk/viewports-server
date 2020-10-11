@@ -1,6 +1,7 @@
 {
   "name": "Viewports Server",
   "description": "Basic viewports server, running on express and postgres. Downloads data and periodically updates them.",
+  "logo": "https://raw.githubusercontent.com/rojcyk/viewports-server/master/logo.png",
   "repository": "https://github.com/rojcyk/viewports-server",
   "keywords": ["node", "express"],
   "addons": [
