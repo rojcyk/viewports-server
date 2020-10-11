@@ -1,6 +1,6 @@
 {
   "name": "Viewports Server",
-  "description": "Basic viewports server, running on express and postgres. Downloads data and periodically updates them.",
+  "description": "Basic viewports server, running on express and postgres. Downloads viewports data and makes them available through a single route. Support for a slack bot.",
   "logo": "https://raw.githubusercontent.com/rojcyk/viewports-server/master/logo.png",
   "repository": "https://github.com/rojcyk/viewports-server",
   "keywords": ["node", "express"],
