@@ -11,7 +11,6 @@
       "plan": "scheduler"
     }
   ],
-  {
   "env": {
     "SLACK_CLIENT_ID": {
       "description": "Slack client ID, found in api.slack.com",
@@ -38,5 +37,4 @@
       "description": "Your default app scopes"
     },
   }
-}
 }
