@@ -16,7 +16,7 @@ export default async (
     const region = req.command.subcommand || 'ww'
 
     const msg = new Message('Popular Viewports')
-    msg.addSection(`Popuplar screen sizes \`${unfoldedName(region)}\``)
+    msg.addSection(`Popular screen sizes \`${unfoldedName(region)}\``)
 
     msg.addActions([{
       type: 'button',
