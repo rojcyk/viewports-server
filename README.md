@@ -97,3 +97,13 @@ The primary thing this server does is that it opens up its `[GET]` `/api/viewpor
 ```
 
 _Example with only mobile platform, and world wide data. The actuall response contains data for all platforms and regions._
+
+## Slack support
+
+The server now supports Slack authorization, and sending data messages to workspaces (public & private channels, dms).
+
+1. First you need to [create a Slack App](https://api.slack.com/apps)
+2. Copy all the necessary values into your local .env, or heroku instance.
+3. Setup all the command, auth, and redirect values in your app settings.
+4. At this point the slack support is ready, and you can trigger the auth with `https://yourhost.com/slack/add`.
+
