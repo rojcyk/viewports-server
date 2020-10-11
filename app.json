@@ -35,6 +35,6 @@
     "SLACK_APP_SCOPES": {
       "value": "commands,chat:write,chat:write.public,team:read",
       "description": "Your default app scopes"
-    },
+    }
   }
 }
