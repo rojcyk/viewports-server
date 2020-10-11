@@ -50,6 +50,13 @@ There is a couple of scripts that you will need:
 
 ```
 DATABASE_URL=
+SLACK_CLIENT_ID=
+SLACK_CLIENT_SECRET=
+SLACK_ROOT_URL=
+SLACK_SIGNING_SECRET=
+SLACK_REDIRECT_URI
+SLACK_TOKEN=
+SLACK_APP_SCOPES=
 ```
 
 4. Run `yarn run dev:migration:run && yarn run dev:seed:run && yarn run dev:task:update`
