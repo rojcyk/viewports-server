@@ -1,6 +1,7 @@
 {
   "name": "Viewports Server",
-  "description": "Basic viewports server, running on express and postgres. Downloads data and periodically updates them.",
+  "description": "Basic viewports server, running on express and postgres. Downloads viewports data and makes them available through a single route. Support for a slack bot.",
+  "logo": "https://raw.githubusercontent.com/rojcyk/viewports-server/master/logo.png",
   "repository": "https://github.com/rojcyk/viewports-server",
   "keywords": ["node", "express"],
   "addons": [
@@ -10,5 +11,31 @@
     {
       "plan": "scheduler"
     }
-  ]
+  ],
+  "env": {
+    "SLACK_CLIENT_ID": {
+      "description": "Slack client ID, found in api.slack.com",
+      "value": "xxxxxxxxxxx.xxxxxxxxxxxxx"
+    },
+    "SLACK_CLIENT_SECRET": {
+      "description": "Slack client secret, found in api.slack.com"
+    },
+    "SLACK_ROOT_URL": {
+      "value": "https://slack.com",
+      "description": "Slack root URL"
+    },
+    "SLACK_SIGNING_SECRET": {
+      "description": "Slack signing secret, found in api.slack.com"
+    },
+    "SLACK_REDIRECT_URI": {
+      "description": "Url used to finish the authorization, set in api.slack.com"
+    },
+    "SLACK_TOKEN": {
+      "description": "Slack TOKEN, found in api.slack.com"
+    },
+    "SLACK_APP_SCOPES": {
+      "value": "commands,chat:write,chat:write.public,team:read",
+      "description": "Your default app scopes"
+    }
+  }
 }
