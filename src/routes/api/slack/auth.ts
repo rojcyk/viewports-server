@@ -46,6 +46,10 @@ export default async function (
 ) {
   try {
     // First we need to check whether the URL contains CODE from slack
+    const err = req.query.error
+    if (err === 'access_denied')
+      throw new ResponseError(401, 'User has declined the permission prompt')
+
     const code = req.query.code
     if (code === undefined)
       throw new ResponseError(401, 'Code query parameter is not available')
