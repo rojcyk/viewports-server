@@ -6,8 +6,6 @@ import dbConfig from '../ormconfig'
 
 const PORT = process.env.PORT || '8000'
 
-console.log(dbConfig)
-
 createConnection(dbConfig as ConnectionOptions).then(connection => {
   console.log(`[server] Local enviroment: ${process.env.NODE_ENV}`)
   console.log(`[server] Server application is up and running on port ${PORT}`)

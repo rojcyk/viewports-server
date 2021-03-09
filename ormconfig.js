@@ -20,6 +20,9 @@ module.exports = {
   seeds: [`${folderPath}/seeds/**/*.{ts,js}`],
   factories: [`${folderPath}/factories/**/*.{ts,js}`],
   synchronize: false,
+  extra: {
+    ssl: true
+  },
   cli: {
      entitiesDir: `${folderPath}/models`,
      migrationsDir: `${folderPath}/migrations`,
