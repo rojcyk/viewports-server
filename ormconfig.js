@@ -21,7 +21,9 @@ module.exports = {
   factories: [`${folderPath}/factories/**/*.{ts,js}`],
   synchronize: false,
   extra: {
-    ssl: true
+    ssl: {
+      rejectUnauthorized: false,
+    }
   },
   cli: {
      entitiesDir: `${folderPath}/models`,
