@@ -23,7 +23,7 @@ const app: Express.Application = Express()
  *****************************/
 
 // Enabling cross origin support
-// app.use(cors())
+app.use(cors())
 
 // Basic express protection middleware
 app.use(helmet())
