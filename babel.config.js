@@ -2,6 +2,7 @@ module.exports = {
   presets: [
     '@babel/preset-typescript',
     ['@babel/preset-env', {
+    loose: true,
     targets: {
       esmodules: true,
     }

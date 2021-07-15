@@ -1,5 +1,4 @@
 import Express from 'express'
-import bodyParser from 'body-parser'
 import helmet from 'helmet'
 import cors from 'cors'
 
@@ -29,8 +28,8 @@ app.use(cors())
 app.use(helmet())
 
 // Parses json only
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(Express.json())
+app.use(Express.urlencoded({ extended: true }))
 
 /*****************************
  * ROUTES
