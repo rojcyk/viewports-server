@@ -27,7 +27,9 @@ export default async (
   await asyncForEach(allRegions, async (region: Region) => {
       console.log(`- Downloading ${platformName} for ${region.title} ...`)
       const csvPlatformData = await downloadDataForRegion(platformName, region)
+      console.log(`- platform data: `,csvPlatformData)
       const processedPlatformData = await parseCSV(csvPlatformData)
+      console.log(`- processed platform data: `,processedPlatformData)
       platformData[region.code as StatCounter.RegionCode] = processedPlatformData
   })
 

@@ -57,6 +57,7 @@ const iterateResults = async (platform: Platform, platformData: StatCounter.Plat
         await repositories.viewports.save(findViewport)
 
         const logMessage = `Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`
+        console.log(logMessage)
 
         // console.log(`Updating viewport: ${result.share}% ${display.width}x${display.height} for [${region.title}] on [${platform.title}]`)
       } else {
@@ -149,6 +150,8 @@ createConnection(dbConfig as ConnectionOptions).then(async connection => {
     // Then we download the data for the respective platform. It downloads data for all
     // the different continents
     const platformData = await statCounter(platform.code as StatCounter.PlatformCode)
+
+    console.log(platformData)
 
     // Finally I iterate over the downloaded platform and update the database
     await iterateContinents(platform, platformData, repositories)
